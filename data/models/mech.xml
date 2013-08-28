@@ -1,0 +1,651 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<articulated_model name="mech">
+  <section name="root">
+    <connector>
+      <p>
+        <v>
+          <x>0.0</x>
+          <y>0.0</y>
+          <z>0.0</z>
+        </v>
+      </p>
+      <a>
+        <v>
+          <x>0.0</x>
+          <y>1.0</y>
+          <z>0.0</z>
+        </v>
+      </a>
+    </connector>
+    <section name="roll">
+      <connector>
+        <p>
+          <v>
+            <x>0.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+          </v>
+        </p>
+        <a>
+          <v>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+          </v>
+        </a>
+      </connector>
+      <section name="chest">
+        <mesh>chest.obj</mesh>
+        <connector>
+          <p>
+            <v>
+              <x>0.6</x>
+              <y>0.0</y>
+              <z>0.0</z>
+            </v>
+          </p>
+          <a>
+            <v>
+              <x>0.0</x>
+              <y>1.0</y>
+              <z>0.0</z>
+            </v>
+          </a>
+        </connector>
+        <section name="hip">
+          <connector>
+            <p>
+              <v>
+                <x>-0.2</x>
+                <y>0.0</y>
+                <z>0.0</z>
+              </v>
+            </p>
+            <a>
+              <v>
+                <x>0.0</x>
+                <y>1.0</y>
+                <z>0.0</z>
+              </v>
+            </a>
+          </connector>
+          <section name="left_upper_leg">
+            <mesh>upper_leg.obj</mesh>
+            <connector>
+              <p>
+                <v>
+                  <x>0.0</x>
+                  <y>0.1</y>
+                  <z>-0.16</z>
+                </v>
+              </p>
+              <a>
+                <v>
+                  <x>0.0</x>
+                  <y>1.0</y>
+                  <z>0.0</z>
+                </v>
+              </a>
+            </connector>
+            <section name="left_lower_leg">
+              <mesh>lower_leg.obj</mesh>
+              <connector>
+                <p>
+                  <v>
+                    <x>0.0</x>
+                    <y>0.0</y>
+                    <z>-0.33</z>
+                  </v>
+                </p>
+                <a>
+                  <v>
+                    <x>0.0</x>
+                    <y>1.0</y>
+                    <z>0.0</z>
+                  </v>
+                </a>
+              </connector>
+              <section name="left_foot">
+                <mesh>foot.obj</mesh>
+                <connector>
+                  <p>
+                    <v>
+                      <x>0.0</x>
+                      <y>0.0</y>
+                      <z>-0.32</z>
+                    </v>
+                  </p>
+                  <a>
+                    <v>
+                      <x>0.0</x>
+                      <y>1.0</y>
+                      <z>0.0</z>
+                    </v>
+                  </a>
+                </connector>
+              </section>
+            </section>
+          </section>
+          <section name="right_upper_leg">
+            <mesh>upper_leg.obj</mesh>
+            <connector>
+              <p>
+                <v>
+                  <x>0.0</x>
+                  <y>-0.1</y>
+                  <z>-0.16</z>
+                </v>
+              </p>
+              <a>
+                <v>
+                  <x>0.0</x>
+                  <y>1.0</y>
+                  <z>0.0</z>
+                </v>
+              </a>
+            </connector>
+            <section name="right_lower_leg">
+              <mesh>lower_leg.obj</mesh>
+              <connector>
+                <p>
+                  <v>
+                    <x>0.0</x>
+                    <y>0.0</y>
+                    <z>-0.33</z>
+                  </v>
+                </p>
+                <a>
+                  <v>
+                    <x>0.0</x>
+                    <y>1.0</y>
+                    <z>0.0</z>
+                  </v>
+                </a>
+              </connector>
+              <section name="right_foot">
+                <mesh>foot.obj</mesh>
+                <connector>
+                  <p>
+                    <v>
+                      <x>0.0</x>
+                      <y>0.0</y>
+                      <z>-0.32</z>
+                    </v>
+                  </p>
+                  <a>
+                    <v>
+                      <x>0.0</x>
+                      <y>1.0</y>
+                      <z>0.0</z>
+                    </v>
+                  </a>
+                </connector>
+              </section>
+            </section>
+          </section>
+        </section>
+        <section name="back">
+          <mesh>back.obj</mesh>
+          <connector>
+            <p>
+              <v>
+                <x>-0.7</x>
+                <y>0.0</y>
+                <z>0.0</z>
+              </v>
+            </p>
+            <a>
+              <v>
+                <x>0.0</x>
+                <y>1.0</y>
+                <z>0.0</z>
+              </v>
+            </a>
+          </connector>
+          <section name="right_wing_hinge">
+            <connector>
+              <p>
+                <v>
+                  <x>0.0</x>
+                  <y>0.0</y>
+                  <z>0.04</z>
+                </v>
+              </p>
+              <a>
+                <v>
+                  <x>1.0</x>
+                  <y>0.0</y>
+                  <z>0.0</z>
+                </v>
+              </a>
+            </connector>
+            <section name="right_wing">
+              <mesh>right_wing.obj</mesh>
+              <connector>
+                <p>
+                  <v>
+                    <x>-0.14</x>
+                    <y>-0.14</y>
+                    <z>0.0</z>
+                  </v>
+                </p>
+                <a>
+                  <v>
+                    <x>0.0</x>
+                    <y>0.0</y>
+                    <z>1.0</z>
+                  </v>
+                </a>
+              </connector>
+            </section>
+          </section>
+          <section name="left_wing_hinge">
+            <connector>
+              <p>
+                <v>
+                  <x>0.0</x>
+                  <y>0.0</y>
+                  <z>0.04</z>
+                </v>
+              </p>
+              <a>
+                <v>
+                  <x>1.0</x>
+                  <y>0.0</y>
+                  <z>0.0</z>
+                </v>
+              </a>
+            </connector>
+            <section name="left_wing">
+              <mesh>left_wing.obj</mesh>
+              <connector>
+                <p>
+                  <v>
+                    <x>-0.14</x>
+                    <y>0.14</y>
+                    <z>0.0</z>
+                  </v>
+                </p>
+                <a>
+                  <v>
+                    <x>0.0</x>
+                    <y>0.0</y>
+                    <z>1.0</z>
+                  </v>
+                </a>
+              </connector>
+            </section>
+          </section>
+        </section>
+        <section name="head">
+          <mesh>head.obj</mesh>
+          <connector>
+            <p>
+              <v>
+                <x>-0.68</x>
+                <y>0.0</y>
+                <z>-0.05</z>
+              </v>
+            </p>
+            <a>
+              <v>
+                <x>-1.0</x>
+                <y>0.0</y>
+                <z>0.0</z>
+              </v>
+            </a>
+          </connector>
+        </section>
+        <section name="left_arm_connector">
+          <connector>
+            <p>
+              <v>
+                <x>-0.64</x>
+                <y>0.06</y>
+                <z>0.1</z>
+              </v>
+            </p>
+            <a>
+              <v>
+                <x>1.0</x>
+                <y>0.0</y>
+                <z>0.0</z>
+              </v>
+            </a>
+          </connector>
+          <section name="left_upper_arm">
+            <mesh>left_upper_arm.obj</mesh>
+            <connector>
+              <p>
+                <v>
+                  <x>0.0</x>
+                  <y>0.19</y>
+                  <z>-0.07</z>
+                </v>
+              </p>
+              <a>
+                <v>
+                  <x>0.0</x>
+                  <y>1.0</y>
+                  <z>0.0</z>
+                </v>
+              </a>
+            </connector>
+            <section name="left_lower_arm">
+              <mesh>lower_arm.obj</mesh>
+              <connector>
+                <p>
+                  <v>
+                    <x>0.0</x>
+                    <y>0.0</y>
+                    <z>-0.38</z>
+                  </v>
+                </p>
+                <a>
+                  <v>
+                    <x>0.0</x>
+                    <y>1.0</y>
+                    <z>0.0</z>
+                  </v>
+                </a>
+              </connector>
+              <section name="left_hand">
+                <mesh>left_hand.obj</mesh>
+                <connector>
+                  <p>
+                    <v>
+                      <x>0.0</x>
+                      <y>0.0</y>
+                      <z>-0.31</z>
+                    </v>
+                  </p>
+                  <a>
+                    <v>
+                      <x>0.0</x>
+                      <y>0.0</y>
+                      <z>1.0</z>
+                    </v>
+                  </a>
+                </connector>
+              </section>
+            </section>
+          </section>
+        </section>
+        <section name="right_arm_connector">
+          <connector>
+            <p>
+              <v>
+                <x>-0.64</x>
+                <y>-0.07</y>
+                <z>0.1</z>
+              </v>
+            </p>
+            <a>
+              <v>
+                <x>1.0</x>
+                <y>0.0</y>
+                <z>0.0</z>
+              </v>
+            </a>
+          </connector>
+          <section name="right_upper_arm">
+            <mesh>right_upper_arm.obj</mesh>
+            <connector>
+              <p>
+                <v>
+                  <x>0.0</x>
+                  <y>-0.19</y>
+                  <z>-0.07</z>
+                </v>
+              </p>
+              <a>
+                <v>
+                  <x>0.0</x>
+                  <y>1.0</y>
+                  <z>0.0</z>
+                </v>
+              </a>
+            </connector>
+            <section name="right_lower_arm">
+              <mesh>lower_arm.obj</mesh>
+              <connector>
+                <p>
+                  <v>
+                    <x>0.0</x>
+                    <y>0.0</y>
+                    <z>-0.38</z>
+                  </v>
+                </p>
+                <a>
+                  <v>
+                    <x>0.0</x>
+                    <y>1.0</y>
+                    <z>0.0</z>
+                  </v>
+                </a>
+              </connector>
+              <section name="right_hand">
+                <mesh>right_hand.obj</mesh>
+                <connector>
+                  <p>
+                    <v>
+                      <x>0.0</x>
+                      <y>0.0</y>
+                      <z>-0.31</z>
+                    </v>
+                  </p>
+                  <a>
+                    <v>
+                      <x>0.0</x>
+                      <y>0.0</y>
+                      <z>1.0</z>
+                    </v>
+                  </a>
+                </connector>
+              </section>
+            </section>
+          </section>
+        </section>
+      </section>
+    </section>
+  </section>
+  <animation name="walking" length="1.0">
+    <key_frame time="0.0">
+      <joint section="right_wing">0.17453292</joint>
+      <joint section="right_upper_leg">-0.5235988</joint>
+      <joint section="right_upper_arm">-1.2217305</joint>
+      <joint section="left_arm_connector">0.0</joint>
+      <joint section="left_wing">-0.17453292</joint>
+      <joint section="right_hand">1.0925761</joint>
+      <joint section="right_foot">0.0</joint>
+      <joint section="left_upper_leg">0.23561946</joint>
+      <joint section="back">-3.1415927</joint>
+      <joint section="roll">0.08726646</joint>
+      <joint section="left_lower_leg">0.34906584</joint>
+      <joint section="left_upper_arm">-1.7453293</joint>
+      <joint section="right_lower_arm">-0.81681406</joint>
+      <joint section="hip">-1.7854718</joint>
+      <joint section="chest">3.1415927</joint>
+      <joint section="right_arm_connector">0.09773844</joint>
+      <joint section="left_hand">-1.7296213</joint>
+      <joint section="left_foot">-0.34906584</joint>
+      <joint section="head">0.09773844</joint>
+      <joint section="right_lower_leg">0.34906584</joint>
+      <joint section="root">-1.5707964</joint>
+      <joint section="left_wing_hinge">0.65100783</joint>
+      <joint section="left_lower_arm">-0.51138145</joint>
+      <joint section="right_wing_hinge">-0.705113</joint>
+    </key_frame>
+    <key_frame time="0.25">
+      <joint section="right_upper_arm">-1.7453293</joint>
+      <joint section="left_upper_arm">-1.3089969</joint>
+      <joint section="left_upper_leg">-0.5235988</joint>
+      <joint section="roll">0.0</joint>
+      <joint section="left_lower_leg">2.0943952</joint>
+    </key_frame>
+    <key_frame time="0.5">
+      <joint section="right_upper_leg">0.34906584</joint>
+      <joint section="right_upper_arm">-1.9198622</joint>
+      <joint section="left_upper_arm">-1.0471976</joint>
+      <joint section="right_foot">-0.34906584</joint>
+      <joint section="left_upper_leg">-0.34906584</joint>
+      <joint section="left_foot">0.17453292</joint>
+      <joint section="right_lower_leg">0.0</joint>
+      <joint section="roll">-0.08726646</joint>
+      <joint section="left_lower_leg">0.17453292</joint>
+    </key_frame>
+    <key_frame time="0.75">
+      <joint section="right_upper_leg">-0.34906584</joint>
+      <joint section="right_upper_arm">-1.3962634</joint>
+      <joint section="right_lower_leg">1.2217305</joint>
+      <joint section="roll">0.0</joint>
+    </key_frame>
+  </animation>
+  <animation name="flying" length="0.1">
+    <key_frame time="0.0">
+      <joint section="right_wing">-0.17453292</joint>
+      <joint section="right_upper_arm">1.5707964</joint>
+      <joint section="right_upper_leg">0.0</joint>
+      <joint section="left_arm_connector">-1.5707964</joint>
+      <joint section="left_wing">0.17453292</joint>
+      <joint section="right_hand">1.0471976</joint>
+      <joint section="right_foot">1.5707964</joint>
+      <joint section="left_upper_leg">0.0</joint>
+      <joint section="back">0.0</joint>
+      <joint section="left_lower_leg">0.17453292</joint>
+      <joint section="left_upper_arm">1.5707964</joint>
+      <joint section="right_lower_arm">-3.1415927</joint>
+      <joint section="hip">1.3962634</joint>
+      <joint section="chest">0.0</joint>
+      <joint section="left_hand">-1.7453293</joint>
+      <joint section="right_arm_connector">1.5707964</joint>
+      <joint section="left_foot">1.5707964</joint>
+      <joint section="right_lower_leg">0.17453292</joint>
+      <joint section="head">3.1415927</joint>
+      <joint section="root">0.0</joint>
+      <joint section="left_wing_hinge">-0.34906584</joint>
+      <joint section="left_lower_arm">-3.1415927</joint>
+      <joint section="right_wing_hinge">0.34906584</joint>
+    </key_frame>
+  </animation>
+  <animation name="transform_jet" length="1.0">
+    <key_frame time="0.0">
+      <joint section="right_upper_leg">0.17976892</joint>
+      <joint section="right_upper_arm">-1.4800392</joint>
+      <joint section="left_arm_connector">-0.09773844</joint>
+      <joint section="right_hand">1.0925761</joint>
+      <joint section="right_foot">-0.34906584</joint>
+      <joint section="left_upper_leg">0.23561946</joint>
+      <joint section="back">-3.1415927</joint>
+      <joint section="left_lower_leg">0.013962634</joint>
+      <joint section="left_upper_arm">-1.813397</joint>
+      <joint section="right_lower_arm">-0.81681406</joint>
+      <joint section="hip">-1.7854718</joint>
+      <joint section="chest">3.1415927</joint>
+      <joint section="right_arm_connector">0.09773844</joint>
+      <joint section="left_hand">-1.7296213</joint>
+      <joint section="left_foot">-0.34906584</joint>
+      <joint section="head">0.09773844</joint>
+      <joint section="root">-1.5707964</joint>
+      <joint section="left_lower_arm">-0.51138145</joint>
+    </key_frame>
+    <key_frame time="0.14">
+      <joint section="chest">3.0543263</joint>
+    </key_frame>
+    <key_frame time="1.0">
+      <joint section="right_wing">-0.17453292</joint>
+      <joint section="right_upper_arm">1.5707964</joint>
+      <joint section="right_upper_leg">0.0</joint>
+      <joint section="left_arm_connector">-1.5707964</joint>
+      <joint section="left_wing">0.17453292</joint>
+      <joint section="right_hand">1.0471976</joint>
+      <joint section="right_foot">1.5707964</joint>
+      <joint section="left_upper_leg">0.0</joint>
+      <joint section="back">0.0</joint>
+      <joint section="left_lower_leg">0.17453292</joint>
+      <joint section="left_upper_arm">1.5707964</joint>
+      <joint section="right_lower_arm">-3.1415927</joint>
+      <joint section="hip">1.3962634</joint>
+      <joint section="chest">0.0</joint>
+      <joint section="left_hand">-1.7453293</joint>
+      <joint section="right_arm_connector">1.5707964</joint>
+      <joint section="left_foot">1.5707964</joint>
+      <joint section="right_lower_leg">0.17453292</joint>
+      <joint section="head">3.1415927</joint>
+      <joint section="root">0.0</joint>
+      <joint section="left_wing_hinge">-0.34906584</joint>
+      <joint section="left_lower_arm">-3.1415927</joint>
+      <joint section="right_wing_hinge">0.34906584</joint>
+    </key_frame>
+  </animation>
+  <animation name="transform_robot" length="1.0">
+    <key_frame time="0.0">
+      <joint section="right_wing">-0.17453292</joint>
+      <joint section="right_upper_arm">1.5707964</joint>
+      <joint section="right_upper_leg">0.0</joint>
+      <joint section="left_arm_connector">-1.5707964</joint>
+      <joint section="left_wing">0.17453292</joint>
+      <joint section="right_hand">1.0471976</joint>
+      <joint section="right_foot">1.5707964</joint>
+      <joint section="left_upper_leg">0.0</joint>
+      <joint section="back">0.0</joint>
+      <joint section="left_lower_leg">0.17453292</joint>
+      <joint section="left_upper_arm">1.5707964</joint>
+      <joint section="right_lower_arm">-3.1415927</joint>
+      <joint section="hip">1.3962634</joint>
+      <joint section="chest">0.017453292</joint>
+      <joint section="left_hand">-1.7453293</joint>
+      <joint section="right_arm_connector">1.5707964</joint>
+      <joint section="left_foot">1.5707964</joint>
+      <joint section="right_lower_leg">0.17453292</joint>
+      <joint section="head">3.1415927</joint>
+      <joint section="root">0.0</joint>
+      <joint section="left_wing_hinge">-0.34906584</joint>
+      <joint section="left_lower_arm">-3.1415927</joint>
+      <joint section="right_wing_hinge">0.34906584</joint>
+    </key_frame>
+    <key_frame time="1.0">
+      <joint section="right_upper_leg">0.17976892</joint>
+      <joint section="right_upper_arm">-1.4800392</joint>
+      <joint section="left_arm_connector">-0.09773844</joint>
+      <joint section="right_hand">1.0925761</joint>
+      <joint section="left_upper_leg">0.23561946</joint>
+      <joint section="back">-3.1415927</joint>
+      <joint section="left_lower_leg">0.013962634</joint>
+      <joint section="left_upper_arm">-1.813397</joint>
+      <joint section="right_lower_arm">-0.81681406</joint>
+      <joint section="hip">-1.7854718</joint>
+      <joint section="chest">3.1415927</joint>
+      <joint section="right_arm_connector">0.09773844</joint>
+      <joint section="left_hand">-1.7296213</joint>
+      <joint section="left_foot">0.34557518</joint>
+      <joint section="head">0.09773844</joint>
+      <joint section="root">-1.4835298</joint>
+      <joint section="left_wing_hinge">0.2617994</joint>
+      <joint section="left_lower_arm">-0.51138145</joint>
+      <joint section="right_wing_hinge">-0.2617994</joint>
+    </key_frame>
+  </animation>
+  <animation name="standing" length="1.0">
+    <key_frame time="0.0">
+      <joint section="right_upper_leg">0.17976892</joint>
+      <joint section="right_upper_arm">-1.4800392</joint>
+      <joint section="left_arm_connector">-0.09773844</joint>
+      <joint section="right_hand">1.0925761</joint>
+      <joint section="left_upper_leg">0.23561946</joint>
+      <joint section="back">-3.1415927</joint>
+      <joint section="left_lower_leg">0.013962634</joint>
+      <joint section="left_upper_arm">-1.813397</joint>
+      <joint section="right_lower_arm">-0.81681406</joint>
+      <joint section="hip">-1.7854718</joint>
+      <joint section="chest">3.1415927</joint>
+      <joint section="right_arm_connector">0.09773844</joint>
+      <joint section="left_hand">-1.7296213</joint>
+      <joint section="left_foot">0.34557518</joint>
+      <joint section="head">0.09773844</joint>
+      <joint section="root">-1.5707964</joint>
+      <joint section="left_lower_arm">-0.51138145</joint>
+    </key_frame>
+  </animation>
+</articulated_model>
+

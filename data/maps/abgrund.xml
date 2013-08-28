@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map name="Abgrund" size="64" material="ground">
+	<players min="2" max="2">
+		<player id="p1">
+			<home_base x='5' y='3'/>		
+		</player>
+		<player id="p2">
+			<home_base x='58' y='60'/>		
+		</player>
+	</players>
+	<bases>
+		<!--base owner='neutral' x='24' y='24' /-->
+	</bases>
+<layout src="abgrund.png">
+
+
+</layout>
+</map>
+

@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+
+<resources>
+	<heightmap_images>
+		<hmap_image name="grasslands">
+			<layers>
+				<layer height="0.7">river.png</layer>
+				<layer height="0.8">rock.png</layer>
+				<layer height="1.0">mud.png</layer>
+				<layer height="1.6">rock.png</layer>
+				<layer height="2.4">rock.png</layer>
+				<layer height="3.0">grass.png</layer>
+			</layers>
+		</hmap_image>
+	</heightmap_images>
+	<materials>
+		<material name="green">
+			<diffuse><r>0.0</r><g>0.5</g><b>0.0</b><a>1.0</a></diffuse>
+			<specular><r>0.0</r><g>0.5</g><b>0.0</b><a>1.0</a></specular>
+		</material>
+		<material name="white">
+			<diffuse><r>1.0</r><g>1.0</g><b>1.0</b><a>1.0</a></diffuse>
+			<specular><r>0.5</r><g>0.5</g><b>0.5</b><a>1.0</a></specular>
+		</material>
+		<material name="ground">
+			<diffuse><r>1.0</r><g>1.0</g><b>1.0</b><a>1.0</a></diffuse>
+			<specular><r>0.0</r><g>0.0</g><b>0.0</b><a>1.0</a></specular>
+			<texture unit="0">
+				<hmap_img>grasslands</hmap_img>
+			</texture>
+			<texture unit="1">
+				<img>detail.png</img>
+			</texture>
+		</material>
+		<material name="water">
+			<diffuse><r>1.0</r><g>1.0</g><b>1.0</b><a>0.8</a></diffuse>
+			<specular><r>1.0</r><g>1.0</g><b>1.0</b><a>0.8</a></specular>
+			<texture><img>water.png</img></texture>
+		</material>
+		<material name="smoke">
+			<diffuse><r>1.0</r><g>1.0</g><b>1.0</b><a>1.0</a></diffuse>
+			<specular><r>0.0</r><g>0.0</g><b>0.0</b><a>0.0</a></specular>
+			<texture><img>smoke_particle.png</img></texture>
+		</material>	
+		<material name="explode">
+			<diffuse><r>1.0</r><g>1.0</g><b>1.0</b><a>1.0</a></diffuse>
+			<specular><r>0.0</r><g>0.0</g><b>0.0</b><a>0.0</a></specular>
+			<texture><img>fire_particle.png</img></texture>
+		</material>
+		<material name="stand_icon">
+			<diffuse><r>1.0</r><g>1.0</g><b>1.0</b><a>1.0</a></diffuse>
+			<specular><r>0.0</r><g>0.0</g><b>0.0</b><a>0.0</a></specular>
+			<texture><img>stand_icon.png</img></texture>
+		</material>
+		<material name="patrol_icon">
+			<diffuse><r>1.0</r><g>1.0</g><b>1.0</b><a>1.0</a></diffuse>
+			<specular><r>0.0</r><g>0.0</g><b>0.0</b><a>0.0</a></specular>
+			<texture><img>patrol_icon.png</img></texture>
+		</material>
+		<material name="defend_icon">
+			<diffuse><r>1.0</r><g>1.0</g><b>1.0</b><a>1.0</a></diffuse>
+			<specular><r>0.0</r><g>0.0</g><b>0.0</b><a>0.0</a></specular>
+			<texture><img>defend_icon.png</img></texture>
+		</material>
+		<material name="order_processing">
+			<diffuse><r>1.0</r><g>1.0</g><b>1.0</b><a>1.0</a></diffuse>
+			<specular><r>0.0</r><g>0.0</g><b>0.0</b><a>0.0</a></specular>
+			<texture><img>order_processing.png</img></texture>
+		</material>
+		<material name="order_ready">
+			<diffuse><r>1.0</r><g>1.0</g><b>1.0</b><a>1.0</a></diffuse>
+			<specular><r>0.0</r><g>0.0</g><b>0.0</b><a>0.0</a></specular>
+			<texture><img>order_ready.png</img></texture>
+		</material>
+		<material name="base">
+			<diffuse><r>1.0</r><g>1.0</g><b>1.0</b><a>1.0</a></diffuse>
+			<specular><r>0.0</r><g>0.0</g><b>0.0</b><a>0.0</a></specular>
+			<texture><img>base.png</img></texture>
+		</material>			
+
+	</materials>
+	<models>
+		<model src="mech.xml" />
+		<model src="tank.xml" />
+		<model src="base.xml" />
+	</models>
+	<particle_models>
+		<particle_model name="explosion">
+			<material>explode</material>
+			<life_time>0.1</life_time>
+			<density>5.0f</density>
+			<gravity>0.0f</gravity>
+			<force>0.1f</force>
+			<dispersion>0.1</dispersion>
+			<size>200.0f</size>
+		</particle_model>
+		<particle_model name="smoke">
+			<material>smoke</material>
+			<life_time>1.0</life_time>
+			<density>50.0f</density>
+			<gravity>0.0f</gravity>
+			<force>0.5f</force>
+			<dispersion>0.5</dispersion>
+			<size>400.0f</size>
+		</particle_model>
+	</particle_models>
+	<maps>
+		<map src="abgrund.xml" />
+	</maps>
+	<songs>
+		<song name="Mournful War" src="mournful_war.midi"/>
+		<song name="No Time" src="no_time.midi"/>
+		<song name="Breach" src="breach.midi"/>
+		<song name="Sleight" src="sleight.midi"/>
+	</songs>
+	<units>
+		<unit name="Tank" class="Tank">
+			<type>Land</type>
+			<cost>3200</cost>
+			<build_time>4</build_time>
+			<armour>100</armour>
+			<energy>7</energy>
+			<ammo>60</ammo>
+			<missiles>0</missiles>
+			<speed>4</speed>				
+			<turn_speed>1</turn_speed>				
+			<dammage>5</dammage>
+		</unit>
+	</units>
+	<orders>
+			<order name="Stand" class="StandAI">
+				<cost>100</cost>
+			</order>
+			<order name="Patrol" class="PatrolAI">
+				<cost>100</cost>
+			</order>
+			<order name="Defend" class="DefendAI">
+				<cost>100</cost>
+			</order>	
+	</orders>
+</resources>

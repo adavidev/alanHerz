@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<articulated_model name="base">
+<section name="root">
+  <mesh>base.obj</mesh>
+  <connector>
+	<p><v><x>0</x><y>0</y><z>0</z></v></p>
+	<a><v><x>0</x><y>0</y><z>1</z></v></a>
+  </connector>
+</section>
+</articulated_model>
+

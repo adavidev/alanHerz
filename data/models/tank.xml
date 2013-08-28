@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<articulated_model name="tank">
+  <section name="chassis">
+    <mesh>chassis.obj</mesh>
+    <connector>
+      <p>
+        <v>
+          <x>0.0</x>
+          <y>0.0</y>
+          <z>0.0</z>
+        </v>
+      </p>
+      <a>
+        <v>
+          <x>0.0</x>
+          <y>0.0</y>
+          <z>1.0</z>
+        </v>
+      </a>
+    </connector>
+    <section name="turret">
+      <mesh>turret.obj</mesh>
+      <connector>
+        <p>
+          <v>
+            <x>-0.08</x>
+            <y>0.0</y>
+            <z>0.38</z>
+          </v>
+        </p>
+        <a>
+          <v>
+            <x>0.0</x>
+            <y>0.0</y>
+            <z>1.0</z>
+          </v>
+        </a>
+      </connector>
+      <section name="cannon">
+        <mesh>tank_cannon.obj</mesh>
+        <connector>
+          <p>
+            <v>
+              <x>0.1</x>
+              <y>0.0</y>
+              <z>0.04</z>
+            </v>
+          </p>
+          <a>
+            <v>
+              <x>1.0</x>
+              <y>0.0</y>
+              <z>0.0</z>
+            </v>
+          </a>
+        </connector>
+      </section>
+    </section>
+  </section>
+</articulated_model>
+
