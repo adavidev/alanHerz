@@ -1,7 +1,10 @@
 /**
  * 
  */
-package sound;
+package game.sound.hzsound;
+
+import game.sound.core.ALSoundPlayer;
+import game.sound.core.iMusicPlayer;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -17,6 +20,7 @@ import org.lwjgl.openal.AL10;
 import static org.lwjgl.openal.AL10.*;
 import org.lwjgl.util.WaveData;
 
+
 /**
  * @author Alan
  * 
@@ -31,7 +35,7 @@ public class ALMusicPlayer extends ALSoundPlayer implements iMusicPlayer {
 	 * 
 	 */
 	public ALMusicPlayer() {
-		init();
+		super();
 	}
 
 	@Override
@@ -56,6 +60,8 @@ public class ALMusicPlayer extends ALSoundPlayer implements iMusicPlayer {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		playRandomSong();
 	}
 
 	/*

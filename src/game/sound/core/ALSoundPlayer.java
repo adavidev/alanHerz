@@ -1,4 +1,4 @@
-package sound;
+package game.sound.core;
 
 import game.core.AbstractResource;
 import game.core.iGameResource;
@@ -10,12 +10,11 @@ import org.lwjgl.openal.AL;
 public class ALSoundPlayer extends AbstractResource{
 
 	public ALSoundPlayer() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
 	@Override
 	public void init() {
-		super.init();
 		// Initialize OpenAL and clear the error bit.
 		try {
 			AL.create();
@@ -32,7 +31,7 @@ public class ALSoundPlayer extends AbstractResource{
 	}
 
 	@Override
-	public void cleanup() {
+	public void destroy() {
 		AL.destroy();
 	}
 

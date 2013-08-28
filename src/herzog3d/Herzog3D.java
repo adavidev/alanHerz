@@ -18,7 +18,11 @@
  */
 package herzog3d;
 import game.core.CoreDisplay;
+import game.core.GlobalResourceList;
 import game.core.iGameResource;
+import game.sound.core.iMusicPlayer;
+import game.sound.hzsound.ALMusicPlayer;
+import game.sound.hzsound.MidiMusicPlayer;
 import herzog3d.HZState.HZKey;
 
 import java.awt.Color;
@@ -42,9 +46,6 @@ import org.lwjgl.opengl.GL13;
 
 import resource.ResourceLoader;
 import resource.ResourceManager;
-import sound.ALMusicPlayer;
-import sound.MidiMusicPlayer;
-import sound.iMusicPlayer;
 import unit.Unit;
 import util.GLUtils;
 import ai.RandomAI;
@@ -62,7 +63,6 @@ public class Herzog3D extends CoreDisplay {
 	private Herzog3D(ResourceManager res) throws Exception {
 	    this.res = res;
         exit = false;
-        musicPlayer = new ALMusicPlayer();
 	}
 
 	/**
@@ -103,6 +103,7 @@ public class Herzog3D extends CoreDisplay {
         GL11.glColorMaterial(GL11.GL_FRONT, GL11.GL_AMBIENT_AND_DIFFUSE);
         
         gameSpecificCrap();
+        GlobalResourceList.init();
 	}
 
 	private void gameSpecificCrap() {
@@ -129,6 +130,8 @@ public class Herzog3D extends CoreDisplay {
         res.bindTextures();
 	    System.out.println("done.");
 	    curState = game;
+	    
+	    musicPlayer = new ALMusicPlayer();
 	}
 
 	public static void main(String[] arguments) throws Exception {
@@ -198,11 +201,13 @@ public class Herzog3D extends CoreDisplay {
 		lastTime = System.nanoTime();
 		curState.update(step);
         curState.draw();
+        
+        GlobalResourceList.update();
 	}
 
 	@Override
 	protected void destroy() {
-        ((iGameResource)musicPlayer).cleanup();
+        GlobalResourceList.destroy();
 	} 
 
 }

@@ -1,4 +1,4 @@
-package sound;
+package game.sound.core;
 
 public interface iMusicPlayer {
 
