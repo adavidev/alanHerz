@@ -37,6 +37,8 @@ import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 
+import core.iGameResource;
+
 import resource.ResourceLoader;
 import resource.ResourceManager;
 import sound.ALMusicPlayer;
@@ -60,7 +62,6 @@ public final class Herzog3D {
 	    this.res = res;
         exit = false;
         musicPlayer = new ALMusicPlayer();
-		musicPlayer.init();
 	}
 	
 	public void runGame(Game game){
@@ -194,7 +195,7 @@ public final class Herzog3D {
 	 */
 	private void cleanup() {
 		Display.destroy();
-        musicPlayer.cleanUp();
+        ((iGameResource)musicPlayer).cleanup();
 	}
 	public static void main(String[] arguments) throws Exception {
 		displayInit();

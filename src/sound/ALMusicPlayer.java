@@ -31,12 +31,12 @@ public class ALMusicPlayer extends ALSoundPlayer implements iMusicPlayer {
 	 * 
 	 */
 	public ALMusicPlayer() {
-		// TODO Auto-generated constructor stub
+		init();
 	}
 
 	@Override
 	public void init() {
-
+		super.init();
 		// Loads the wave file from this class's package in your classpath
 		WaveData waveFile = null;
 		try {
