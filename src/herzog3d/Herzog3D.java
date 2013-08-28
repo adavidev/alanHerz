@@ -37,6 +37,7 @@ import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 
+import core.CoreDisplay;
 import core.iGameResource;
 
 import resource.ResourceLoader;
@@ -48,7 +49,7 @@ import unit.Unit;
 import util.GLUtils;
 import ai.RandomAI;
 
-public final class Herzog3D {
+public class Herzog3D extends CoreDisplay {
 
     private HZState curState;
     
@@ -63,55 +64,12 @@ public final class Herzog3D {
         exit = false;
         musicPlayer = new ALMusicPlayer();
 	}
-	
-	public void runGame(Game game){
-        musicPlayer.playRandomSong();
-	    lastTime = System.nanoTime();
-	    this.curState = game;
-	    try {
-		    while (!exit && !curState.isFinished()){
-				if (!Display.isVisible()) {
-				    Thread.sleep(20);
-				} else if (Display.isCloseRequested()) {
-					exit = true;
-				} else {
-					mainLoop();
-				}
-				Display.update();
-		    }
-	    } catch (InterruptedException ie){}
-        cleanup();
-	}
-	
-	
-	private void mainLoop() {
-        try {
-            Thread.sleep(10);
-	    } catch (InterruptedException ie){}
-        
-        curState.onKeyPress(0);
-        
-		for (int i = 0; i < Keyboard.getNumKeyboardEvents(); i++) {
-			Keyboard.next();
-			if (Keyboard.getEventKey() == Keyboard.KEY_ESCAPE && Keyboard.getEventKeyState()){
-				exit = true;
-			} else if (Keyboard.getEventKey() == Keyboard.KEY_T && Keyboard.getEventKeyState()){
-				System.out.println("Current time: " + Sys.getTime());
-			} else if (Keyboard.getEventKey() == Keyboard.KEY_F5){
-            	screenShot(screenShotNum++);
-            }
-		}
-		float step = (System.nanoTime() - lastTime)/1000000000.0f;
-		lastTime = System.nanoTime();
-		curState.update(step);
-        curState.draw();
-
-	}
 
 	/**
 	 * Initialize
 	 */
-	private static void init() throws Exception {
+	@Override
+	protected void init() {
 	    GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
 		GL11.glEnable(GL11.GL_CULL_FACE);
@@ -144,67 +102,10 @@ public final class Herzog3D {
         GL11.glEnable(GL11.GL_COLOR_MATERIAL);
         GL11.glColorMaterial(GL11.GL_FRONT, GL11.GL_AMBIENT_AND_DIFFUSE);
         
-       
-        
-	}
-	
-	public static void displayInit(){
-		DisplayMode mode = null;
-		try {
-			//find first display mode that allows us 640*480*16
-			DisplayMode[] modes = Display.getAvailableDisplayModes();
-			for (int i = 0; i < modes.length; i++) {
-				if (modes[i].getWidth() == 800 && modes[i].getHeight() == 600 && modes[i].getBitsPerPixel() >= 24 ) {
-					mode = modes[i];
-					break;
-				}
-			}
-			if (mode != null) {
-				//select above found displaymode
-				System.out.println("Setting display mode to " + mode);
-				Display.setDisplayMode(mode);
-				//Display.setFullscreen(true);
-				//Mouse.setGrabbed(true);
-				System.out.println("Created display.");
-			} else {
-				mode = new DisplayMode(800,600);
-				try {
-					Display.setDisplayMode(mode);
-					Display.create();
-					System.out.println("Created OpenGL.");
-				} catch (Exception e) {
-					System.err.println("Failed to create OpenGL due to " + e);
-					System.exit(1);
-				}
-			}
-		} catch (Exception e) {
-			System.err.println("Failed to create display due to " + e);
-		}
-		try {
-			Display.create();
-			System.out.println("Created OpenGL.");
-		} catch (Exception e) {
-			System.err.println("Failed to create OpenGL due to " + e);
-			System.exit(1);
-		}		
-		
+        gameSpecificCrap();
 	}
 
-	/**
-	 * Cleanup
-	 */
-	private void cleanup() {
-		Display.destroy();
-        ((iGameResource)musicPlayer).cleanup();
-	}
-	public static void main(String[] arguments) throws Exception {
-		displayInit();
-		init();
-	    ResourceLoader loader = new ResourceLoader();
-	    System.out.print("Loading resources...");
-	    ResourceManager res = loader.loadResources(new File("data/resources.xml"));
-	    System.out.println("done.");
-	    Herzog3D hz3d = new Herzog3D(res);
+	private void gameSpecificCrap() {
 	    Player[] players = new Player[2];
 	    players[0] = new Player("Player1",null);
 	    players[0].setColour(new Color(255,96,96));
@@ -227,8 +128,18 @@ public final class Herzog3D {
 	    System.out.print("Binding textures...");
         res.bindTextures();
 	    System.out.println("done.");
+	    curState = game;
+	}
 
-		hz3d.runGame(game);
+	public static void main(String[] arguments) throws Exception {
+		ResourceLoader loader = new ResourceLoader();
+	    System.out.print("Loading resources...");
+	    ResourceManager res = loader.loadResources(new File("data/resources.xml"));
+	    System.out.println("done.");
+		
+		Herzog3D hz3d = new Herzog3D(res);
+
+		hz3d.start();
 	}
 
     public void screenShot(int number) {
@@ -263,6 +174,35 @@ public final class Herzog3D {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-    } 
+    }
+
+	@Override
+	protected void update() {
+        try {
+            Thread.sleep(10);
+	    } catch (InterruptedException ie){}
+        
+        curState.onKeyPress(0);
+        
+		for (int i = 0; i < Keyboard.getNumKeyboardEvents(); i++) {
+			Keyboard.next();
+			if (Keyboard.getEventKey() == Keyboard.KEY_ESCAPE && Keyboard.getEventKeyState()){
+				exit = true;
+			} else if (Keyboard.getEventKey() == Keyboard.KEY_T && Keyboard.getEventKeyState()){
+				System.out.println("Current time: " + Sys.getTime());
+			} else if (Keyboard.getEventKey() == Keyboard.KEY_F5){
+            	screenShot(screenShotNum++);
+            }
+		}
+		float step = (System.nanoTime() - lastTime)/1000000000.0f;
+		lastTime = System.nanoTime();
+		curState.update(step);
+        curState.draw();
+	}
+
+	@Override
+	protected void destroy() {
+        ((iGameResource)musicPlayer).cleanup();
+	} 
 
 }
