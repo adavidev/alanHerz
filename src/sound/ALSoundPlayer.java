@@ -1,10 +1,11 @@
 package sound;
 
+import game.core.AbstractResource;
+import game.core.iGameResource;
+
 import org.lwjgl.LWJGLException;
 import org.lwjgl.openal.AL;
 
-import core.AbstractResource;
-import core.iGameResource;
 
 public class ALSoundPlayer extends AbstractResource{
 

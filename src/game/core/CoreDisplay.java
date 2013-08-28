@@ -1,4 +1,4 @@
-package core;
+package game.core;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;

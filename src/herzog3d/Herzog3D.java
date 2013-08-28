@@ -17,6 +17,8 @@
  *   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 package herzog3d;
+import game.core.CoreDisplay;
+import game.core.iGameResource;
 import herzog3d.HZState.HZKey;
 
 import java.awt.Color;
@@ -37,8 +39,6 @@ import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 
-import core.CoreDisplay;
-import core.iGameResource;
 
 import resource.ResourceLoader;
 import resource.ResourceManager;

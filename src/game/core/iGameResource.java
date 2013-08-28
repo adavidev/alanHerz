@@ -1,4 +1,4 @@
-package core;
+package game.core;
 
 public interface iGameResource {
 public void init();
