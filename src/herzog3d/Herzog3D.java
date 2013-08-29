@@ -19,6 +19,8 @@
 package herzog3d;
 import game.core.CoreDisplay;
 import game.core.GlobalResourceList;
+import game.core.GloballyManagedGame;
+import game.core.LocalGameTime;
 import game.core.iGameResource;
 import game.sound.core.iMusicPlayer;
 import game.sound.hzsound.ALMusicPlayer;
@@ -50,7 +52,7 @@ import unit.Unit;
 import util.GLUtils;
 import ai.RandomAI;
 
-public class Herzog3D extends CoreDisplay {
+public class Herzog3D extends GloballyManagedGame {
 
     private HZState curState;
     
@@ -103,7 +105,7 @@ public class Herzog3D extends CoreDisplay {
         GL11.glColorMaterial(GL11.GL_FRONT, GL11.GL_AMBIENT_AND_DIFFUSE);
         
         gameSpecificCrap();
-        GlobalResourceList.init();
+        super.init();
 	}
 
 	private void gameSpecificCrap() {
@@ -186,28 +188,16 @@ public class Herzog3D extends CoreDisplay {
 	    } catch (InterruptedException ie){}
         
         curState.onKeyPress(0);
-        
-		for (int i = 0; i < Keyboard.getNumKeyboardEvents(); i++) {
-			Keyboard.next();
-			if (Keyboard.getEventKey() == Keyboard.KEY_ESCAPE && Keyboard.getEventKeyState()){
-				exit = true;
-			} else if (Keyboard.getEventKey() == Keyboard.KEY_T && Keyboard.getEventKeyState()){
-				System.out.println("Current time: " + Sys.getTime());
-			} else if (Keyboard.getEventKey() == Keyboard.KEY_F5){
-            	screenShot(screenShotNum++);
-            }
-		}
-		float step = (System.nanoTime() - lastTime)/1000000000.0f;
-		lastTime = System.nanoTime();
+
+		float step = (float) LocalGameTime.getDelta();
 		curState.update(step);
         curState.draw();
-        
-        GlobalResourceList.update();
+        super.update();
 	}
 
 	@Override
 	protected void destroy() {
-        GlobalResourceList.destroy();
+		super.destroy();
 	} 
 
 }
