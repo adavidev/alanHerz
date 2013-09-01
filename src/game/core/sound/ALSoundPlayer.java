@@ -1,4 +1,4 @@
-package game.sound.core;
+package game.core.sound;
 
 import game.core.AbstractResource;
 import game.core.iGameResource;

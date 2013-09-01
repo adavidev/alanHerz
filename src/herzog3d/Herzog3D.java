@@ -17,15 +17,11 @@
  *   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 package herzog3d;
-import game.core.CoreDisplay;
-import game.core.GlobalResourceList;
+import game.core.DefaultOpenGLResource;
 import game.core.GloballyManagedGame;
 import game.core.LocalGameTime;
-import game.core.iGameResource;
-import game.sound.core.iMusicPlayer;
-import game.sound.hzsound.ALMusicPlayer;
-import game.sound.hzsound.MidiMusicPlayer;
-import herzog3d.HZState.HZKey;
+import game.core.hzsound.ALMusicPlayer;
+import game.core.sound.iMusicPlayer;
 
 import java.awt.Color;
 import java.awt.geom.AffineTransform;
@@ -38,18 +34,12 @@ import java.nio.ByteOrder;
 
 import javax.imageio.ImageIO;
 
-import org.lwjgl.Sys;
-import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL13;
-
 
 import resource.ResourceLoader;
 import resource.ResourceManager;
 import unit.Unit;
-import util.GLUtils;
 import ai.RandomAI;
 
 public class Herzog3D extends GloballyManagedGame {
@@ -57,14 +47,12 @@ public class Herzog3D extends GloballyManagedGame {
     private HZState curState;
     
     private int screenShotNum = 1;
-    private long lastTime;
     private ResourceManager res;
-    private boolean exit;
     private iMusicPlayer musicPlayer;
 
 	private Herzog3D(ResourceManager res) throws Exception {
 	    this.res = res;
-        exit = false;
+	    DefaultOpenGLResource gl = new DefaultOpenGLResource();
 	}
 
 	/**
@@ -72,38 +60,6 @@ public class Herzog3D extends GloballyManagedGame {
 	 */
 	@Override
 	protected void init() {
-	    GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-		GL11.glEnable(GL11.GL_DEPTH_TEST);
-		GL11.glEnable(GL11.GL_CULL_FACE);
-		
-		GL11.glMatrixMode(GL11.GL_MODELVIEW);
-		GL11.glShadeModel(GL11.GL_SMOOTH);
-//		GL11.glPolygonMode(GL11.GL_FRONT,GL11.GL_LINE); 
-  		GLUtils.glLightColour(GL11.GL_SPECULAR, 0.1f,0.1f,0.1f, 1.0f);
-  		GLUtils.glLightColour(GL11.GL_DIFFUSE, 1.0f,1.0f,1.0f, 1.0f);
-  		GLUtils.glLightModel(GL11.GL_LIGHT_MODEL_AMBIENT, 0.3f,0.3f,0.3f, 1.0f);
-		
-	 	GL11.glEnable(GL11.GL_LIGHTING);
-		GL11.glEnable(GL11.GL_LIGHT0);
-
-        // Set up texture unit 0
-        GL13.glActiveTexture(GL13.GL_TEXTURE0);
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
-        GL11.glTexEnvi(GL11.GL_TEXTURE_ENV, GL11.GL_TEXTURE_ENV_MODE, GL11.GL_MODULATE);
-	 	GL11.glTexParameteri(GL11.GL_TEXTURE_2D,GL11.GL_TEXTURE_WRAP_S, GL11.GL_CLAMP);
-	 	GL11.glTexParameteri(GL11.GL_TEXTURE_2D,GL11.GL_TEXTURE_WRAP_T, GL11.GL_CLAMP);
-
-        // Set up texture unit 1
-	 	GL13.glActiveTexture(GL13.GL_TEXTURE1);
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
-        GL11.glTexEnvi(GL11.GL_TEXTURE_ENV, GL11.GL_TEXTURE_ENV_MODE, GL11.GL_MODULATE);
-        GL11.glTexParameteri(GL11.GL_TEXTURE_2D,GL11.GL_TEXTURE_WRAP_S, GL11.GL_REPEAT);
-        GL11.glTexParameteri(GL11.GL_TEXTURE_2D,GL11.GL_TEXTURE_WRAP_T, GL11.GL_REPEAT);
-        GL13.glActiveTexture(GL13.GL_TEXTURE0);
-        
-        GL11.glEnable(GL11.GL_COLOR_MATERIAL);
-        GL11.glColorMaterial(GL11.GL_FRONT, GL11.GL_AMBIENT_AND_DIFFUSE);
-        
         gameSpecificCrap();
         super.init();
 	}
@@ -183,9 +139,7 @@ public class Herzog3D extends GloballyManagedGame {
 
 	@Override
 	protected void update() {
-        try {
-            Thread.sleep(10);
-	    } catch (InterruptedException ie){}
+        
         
         curState.onKeyPress(0);
 
@@ -198,6 +152,6 @@ public class Herzog3D extends GloballyManagedGame {
 	@Override
 	protected void destroy() {
 		super.destroy();
-	} 
+	}
 
 }

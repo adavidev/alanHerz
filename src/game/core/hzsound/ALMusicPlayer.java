@@ -1,10 +1,10 @@
 /**
  * 
  */
-package game.sound.hzsound;
+package game.core.hzsound;
 
-import game.sound.core.ALSoundPlayer;
-import game.sound.core.iMusicPlayer;
+import game.core.sound.ALSoundPlayer;
+import game.core.sound.iMusicPlayer;
 
 import java.io.BufferedInputStream;
 import java.io.File;

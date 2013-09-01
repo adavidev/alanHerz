@@ -16,9 +16,9 @@
  *   along with this program; if not, write to the Free Software
  *   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
-package game.sound.hzsound;
+package game.core.hzsound;
 
-import game.sound.core.iMusicPlayer;
+import game.core.sound.iMusicPlayer;
 
 import java.io.File;
 import java.io.IOException;
