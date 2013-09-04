@@ -5,13 +5,12 @@ import org.lwjgl.opengl.GL13;
 
 import util.GLUtils;
 
-public class DefaultOpenGLResource extends AbstractResource {
+public class DefaultOpenGL extends AbstractResource {
 
-	public DefaultOpenGLResource() {
+	public DefaultOpenGL() {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
 	public void init() {
 		GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
@@ -46,11 +45,9 @@ public class DefaultOpenGLResource extends AbstractResource {
         GL11.glColorMaterial(GL11.GL_FRONT, GL11.GL_AMBIENT_AND_DIFFUSE);
 	}
 
-	@Override
 	public void update() {
 	}
 
-	@Override
 	public void destroy() {
 	}
 

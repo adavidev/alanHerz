@@ -18,15 +18,12 @@ public class ManagedGameObjectList extends AbstractResource {
 		return instance;
 	}
 
-	public ManagedGameObjectList() {
+	protected ManagedGameObjectList() {
 		super();
 		gameObjects = new ArrayList<IGameObject>();
 	}
 
 	public void init() {
-		for (IGameObject resource : gameObjects) {
-			resource.init();
-		}
 	}
 
 	public void update() {
@@ -43,6 +40,7 @@ public class ManagedGameObjectList extends AbstractResource {
 	}
 	
 	public static void add(IGameObject go) {
+		go.init();
 		getInstance().gameObjects.add(go);
 	}
 

@@ -21,6 +21,9 @@ import hud.HZWidget;
 import hud.ManagerOverlay;
 import hud.StatusOverlay;
 
+import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -33,10 +36,12 @@ import java.util.Map;
 import map.Base;
 import map.GameMap;
 
+import org.jdom.JDOMException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
 import resource.Material;
+import resource.ResourceLoader;
 import resource.ResourceManager;
 import resource.ResourceNotFoundException;
 import unit.Mech;
@@ -45,6 +50,7 @@ import unit.UnitFactory;
 import util.GLUtils;
 import util.GameMath;
 import util.Vector3f;
+import ai.RandomAI;
 import ai.UnitAI.UnitMove;
 import ai.UnitAI.UnitTurn;
 import effects.Effect;
@@ -75,10 +81,39 @@ public class Game extends HZState {
     private boolean finished;
     private Camera cam;
     
-    public Game(Player[] players,String mapName, ResourceManager resManager) throws ResourceNotFoundException {
-        map = resManager.getMap(mapName);
+    private static Game instance = null;
+    
+    public static Game getInstance()
+    {
+    	if (instance == null)
+    	{
+    		instance = new Game();
+    	}
+    	return instance;
+    }
+    
+    public Game() {
+    	ResourceLoader loader = new ResourceLoader();
+	    System.out.print("Loading resources...");
+	    ResourceManager res = null;
+			try {
+				res = loader.loadResources(new File("data/resources.xml"));
+			} catch (ResourceNotFoundException | IOException | JDOMException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+	    System.out.println("done.");
+    	
+    	Player[] players = new Player[2];
+	    players[0] = new Player("Player1",null);
+	    players[0].setColour(new Color(255,96,96));
+	    players[1] = new Player("Player2",null);
+	    players[1].setColour(new Color(96,96,255));
+    	
+    	map = res.getMap("Abgrund");
         this.cam = new Camera(this);
-        this.resManager = resManager;
+        this.resManager = res;
         this.player = players[0];
         
         objects = new LinkedList<HZObject>();
@@ -117,9 +152,25 @@ public class Game extends HZState {
         managerOverlay.setGeometry(208,64,384,416);
         overlays.add(new StatusOverlay(resManager,players[0]));
         overlays.add(managerOverlay);
+        
+        for (int i = 0; i < 50; i++){
+    		Unit unit = res.getUnitFactory().buildUnit((i%2==0)?players[0]:players[1],"Tank");
+            float x = (float)Math.random()*48 + 1f;
+            float y = (float)Math.random()*48 + 1f;
+    		while (this.getUnitAt(x,y,0) != null){
+                x = (float)Math.random()*16 + 1f;
+                y = (float)Math.random()*16 + 1f;
+    		}
+    		unit.getPos().set(x,y,0);
+    		unit.setAI(new RandomAI(unit));
+            this.addUnit(unit);
+        }
+        System.out.print("Binding textures...");
+        res.bindTextures();
+	    System.out.println("done.");
     }
-    
-    public void orderUnit(Player player, String unitName){
+
+	public void orderUnit(Player player, String unitName){
     	unitOrders.put(player, new UnitOrder(unitName,unitFactory.getTimeToBuild(unitName)));
     	player.setUnitOrder(unitOrders.get(player));
     }
