@@ -2,7 +2,7 @@ package game.core.objects;
 
 import java.util.ArrayList;
 
-import game.core.AbstractResource;
+import game.core.resource.AbstractResource;
 
 public class ManagedGameObjectList extends AbstractResource {
 

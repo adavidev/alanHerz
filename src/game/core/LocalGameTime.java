@@ -1,13 +1,10 @@
 package game.core;
 
-public class LocalGameTime extends AbstractResource{
+import game.core.resource.iGameResource;
+
+public class LocalGameTime implements iGameResource{
 
 	static double lastTime = System.currentTimeMillis();
-	
-	static
-	{
-		new LocalGameTime();
-	}
 
 	public static double getDelta() {
 		double delta = (System.currentTimeMillis() - lastTime)/1000.0;

@@ -1,7 +1,7 @@
 package game.core.sound;
 
-import game.core.AbstractResource;
-import game.core.iGameResource;
+import game.core.resource.AbstractResource;
+import game.core.resource.iGameResource;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.openal.AL;

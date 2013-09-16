@@ -43,10 +43,6 @@ public class Mech extends Unit {
 			0,0,100,100,100,0,20,2,10
 	);
 
-	private static final UnitStats CARRIER_STATS = new UnitStats(
-			0,0,100,100,100,0,80,2,10
-	);
-
 	private static final UnitStats JET_STATS = new UnitStats(
 			0,0,100,100,100,0,100,2,10
 	);
@@ -54,8 +50,7 @@ public class Mech extends Unit {
 	
     public enum MechForm {
         JET(JET_STATS),
-        ROBOT(ROBOT_STATS),
-        CARRIER(CARRIER_STATS);
+        ROBOT(ROBOT_STATS);
         
         public UnitStats stats;
         
@@ -68,7 +63,6 @@ public class Mech extends Unit {
     private MechForm form;
     private float aniPos;
     private KeyFrameAnimation ani;
-    private Unit cargo;
     private boolean transforming;
     private Shell jetShell;
     private Shell robotShell;
@@ -90,35 +84,18 @@ public class Mech extends Unit {
         shell = jetShell;
     }
     
-    public void pickUpUnit(Unit unit){
-        transform(MechForm.CARRIER);
-        cargo = unit;
-    }
-    
-    public void dropUnit(Game game){
-        transform(MechForm.JET);
-        cargo.setActive(true);
-        cargo.setPos(pos.x,pos.y,pos.z);
-        
-        cargo = null;
-    }
-    
     public MechForm getForm(){
         return form;
     }
     
     public boolean isFlying(){
-    	return form == MechForm.JET || form == MechForm.CARRIER; 
+    	return form == MechForm.JET; 
     }
     
     private void transform(MechForm newForm){
         switch (newForm){
         	case JET:
-                if (form == MechForm.CARRIER){
-                    switchAnimation("flying");
-                } else {
-                    switchAnimation("transform_jet");
-                }
+                switchAnimation("transform_jet");
         	    transforming = true;
                 form = newForm;
                 shell = jetShell;
@@ -128,11 +105,6 @@ public class Mech extends Unit {
                 transforming = true;
                 form = newForm;
                 shell = robotShell;
-                break;
-            case CARRIER:
-                switchAnimation("flying");
-                transforming = true;
-                form = newForm;
                 break;
         	    
         }
@@ -163,25 +135,13 @@ public class Mech extends Unit {
         if (((Player)ai).getTransform()){
             switch (form){
                 case JET:
-//                	Tile tile = game.getMap().getTileAt(pos.x,pos.y);
-//                	
-                    Unit pickup;
-                    if ((pickup = game.getUnitAt(pos.x,pos.y,0.5f)) != null){
-                        pickUpUnit(pickup);
-                        pickup.setActive(false);
-                    } else {
-                    	if (game.getMap().canLand(pos.x,pos.y) && game.getBase(pos.x,pos.y) == null){
+                	if (game.getMap().canLand(pos.x,pos.y) && game.getBase(pos.x,pos.y) == null){
                     		transform(MechForm.ROBOT);
-                    	}
                     }
                     break;
                 case ROBOT:
                     transform(MechForm.JET);
                     break;
-                case CARRIER:
-                	if (game.getUnitAt(pos.x,pos.y,0.5f) == null){
-                		this.dropUnit(game);
-                	}
             }
         }
         
@@ -197,7 +157,6 @@ public class Mech extends Unit {
 	            if (transforming){
                     switch (form){
                     case JET:
-                    case CARRIER:
                         switchAnimation("flying");
                         break;
                     case ROBOT:
@@ -215,69 +174,5 @@ public class Mech extends Unit {
         if (!transforming){
         	super.update(game,step);
         }
-
-//        float newX = pos.x;
-//        float newY = pos.y;
-//        if (player.getAcceleration() != 0){
-//            energy -= step*MECH_POWER;
-//            newX += Math.cos(dir)*step*player.getAcceleration()*SPEED_JET;
-//            newY += Math.sin(dir)*step*player.getAcceleration()*SPEED_JET;
-//        }
-//        pos.set(newX,newY);
-//        
-//        if (player.getTurn() != 0){
-//        	dir += player.getTurn()*player.getAcceleration()*step;
-//        }
-//        
-//        if (form == MechForm.ROBOT){
-//            pos.z = game.getMap().getHeightAt(pos.x, pos.y) + 1.3f;
-//        } else {
-//            pos.z = game.getMap().getHeightAt(pos.x, pos.y) + 2.0f;
-//        }
-//        if (controller.getFire()){
-//            GL11.glLoadIdentity();
-//            super.transformGL(true);
-//            Connector c = model.getTransformedConnector("cannon",state);
-//            c.getAxis().scale(10.0f);
-//            game.addEffect(new Projectile(c.getPosition(),c.getAxis()));
-//        }
     }
-    
-
-//    public float getHeight(GameMap map){
-//    	float weight = aniPos/ani.getLength();
-//        switch (form) {
-//        case FORM_CARRIER:
-//        case FORM_JET:
-//            return HEIGHT_JET;
-//        case FORM_ROBOT:
-//            return HEIGHT_ROBOT + map.getHeightAt(pos.x,pos.y);
-//        case FORM_TRANSFORM_JET:
-//        	return weight*HEIGHT_JET + (1-weight)*(HEIGHT_ROBOT + map.getHeightAt(pos.x,pos.y));
-//        case FORM_TRANSFORM_ROBOT:
-//        	return weight*(HEIGHT_ROBOT + map.getHeightAt(pos.x,pos.y)) + (1-weight)*HEIGHT_JET;
-//        case FORM_TRANSFORM_CARRIER:
-//            return weight*map.getHeightAt(pos.x,pos.y) + (1-weight)*HEIGHT_JET;
-//        default:
-//            return 0.0f;
-//        }
-//        
-//    }
-
-//    public void draw(Game game){
-//        
-//        GL11.glPushMatrix();
-//        GL11.glTranslatef(pos.x,pos.y,pos.z);
-//        GL11.glRotatef((float)(dir*GameMath.DEGREES_PER_RADIAN),0,0,1);
-//
-//        skin.bind();
-//        model.draw(state);
-//        if (cargo != null){
-//           GL11.glTranslatef(0,0,-0.2f);
-////           cargo.draw();
-//        }
-////        shell.draw();
-//        
-//        GL11.glPopMatrix();
-//    }
 }

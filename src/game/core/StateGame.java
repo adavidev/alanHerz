@@ -2,17 +2,17 @@ package game.core;
 
 public class StateGame extends GloballyManagedGame {
 
-	private GameState state;
+	private iGameState state;
 
 	public StateGame() {
 
 	}
 
-	public void setState(GameState state) {
+	public void setState(iGameState state) {
 		this.state = state;
 	}
 
-	public GameState getState() {
+	public iGameState getState() {
 		return state;
 	}
 

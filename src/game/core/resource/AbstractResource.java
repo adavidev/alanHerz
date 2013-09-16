@@ -1,4 +1,5 @@
-package game.core;
+package game.core.resource;
+
 
 
 public abstract class AbstractResource  implements iGameResource {

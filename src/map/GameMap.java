@@ -359,7 +359,7 @@ public class GameMap {
         GL11.glBegin(GL11.GL_TRIANGLES);
     	for(int i = 0; i < tiles.length; i++){
             for(int j = 0; j < tiles[0].length; j++){
-                if (cam == null || Math.abs(camTarget.x - i) < 16 && Math.abs(camTarget.y - j) < 16){
+                if (cam == null || Math.abs(camTarget.x - i) < 25 && Math.abs(camTarget.y - j) < 25){
                     tiles[i][j].draw();
                 }
             }

@@ -1,5 +1,7 @@
 package game.core;
 
+import game.core.resource.AbstractResource;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 
@@ -8,7 +10,7 @@ import util.GLUtils;
 public class DefaultOpenGL extends AbstractResource {
 
 	public DefaultOpenGL() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
 	public void init() {

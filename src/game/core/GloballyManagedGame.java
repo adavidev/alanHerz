@@ -1,5 +1,7 @@
 package game.core;
 
+import game.core.resource.GlobalResourceList;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 

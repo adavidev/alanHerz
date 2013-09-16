@@ -6,6 +6,8 @@ import org.lwjgl.opengl.DisplayMode;
 
 public abstract class CoreDisplay {
 
+	LocalGameTime theTime = new LocalGameTime();
+	
 	public void start() {
 		initInternal();
 
@@ -31,18 +33,21 @@ public abstract class CoreDisplay {
 			System.exit(0);
 		}
 		init();
+		theTime.init();
 	}
 	
 	private void updateInternal()
 	{
 		update();
 		Display.update();
+		theTime.update();
 	}
 
 	private void destroyInternal()
 	{
 		destroy();
 		Display.destroy();
+		theTime.destroy();
 	}
 
 	protected abstract  void init();

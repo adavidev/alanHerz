@@ -47,7 +47,7 @@ import ai.RandomAI;
 
 public class Herzog3D extends GloballyManagedGame {
 
-	private HZState curState;
+	private Game curState;
 
 	private int screenShotNum = 1;
 	private ResourceManager res;
@@ -70,6 +70,7 @@ public class Herzog3D extends GloballyManagedGame {
 	private void gameSpecificCrap() {
 		Game game = new Game();
 		curState = game;
+		curState.init();
 
 		musicPlayer = new ALMusicPlayer();
 	}
@@ -122,10 +123,10 @@ public class Herzog3D extends GloballyManagedGame {
 	@Override
 	protected void update() {
 
-		curState.onKeyPress(0);
+//		curState.onKeyPress(0);s
 
 		float step = (float) LocalGameTime.getDelta();
-		curState.update(step);
+		curState.update();
 		curState.draw();
 		super.update();
 	}

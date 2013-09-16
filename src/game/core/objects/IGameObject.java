@@ -2,7 +2,7 @@ package game.core.objects;
 
 import org.lwjgl.util.vector.Vector3f;
 
-import game.core.iGameResource;
+import game.core.resource.iGameResource;
 
 public interface IGameObject extends iGameResource {
 
